@@ -1,0 +1,43 @@
+<div class="card <%= bg_color %>">
+  <div class="card-title">
+    <h5 class="ml-3 mt-3 <%= text_color %>">
+      Form
+      <%= card_toggler 'configure-form-collapse' %>
+    </h5>
+  </div>
+
+  <div class="collapse show" id="configure-form-collapse">
+    <div class="card-subtitle text-muted ml-3">
+      <span class="<%= text_color %>"><%= I18n.t 'card.configuration.form_desc' %></span>
+    </div>
+
+    <div class="card-body">
+      <%= form_with model: @configuration, url: configure_path, method: :post do |f| %>
+
+        <%= render partial: 'shared/forms/errors', locals: { model: @configuration } %>
+        
+        <div class="form-group">
+          <%= f.label :theme, class: text_color %>
+          <%= f.select  :theme, 
+                        Configuration::AVAILABLE_THEMES,
+                        {},
+                        { :class => 'form-control' } %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :locale, class: text_color %>
+          <%= f.select  :locale, 
+                        Configuration::AVAILABLE_LOCALE,
+                        {},
+                        { :class => 'form-control' } %>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit "#{I18n.t 'general.update'}",
+                          class: "form-control #{btn_form}" %>
+          </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

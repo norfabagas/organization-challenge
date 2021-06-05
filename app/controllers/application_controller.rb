@@ -1,14 +1,10 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :exception
+  around_action :switch_locale
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :phone, :email, :password)}
-
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :phone, :avatar, :email, :password, :current_password)}
+  def switch_locale(&action)
+    locale = user_signed_in? ? current_user.configuration.locale : 'en'
+    I18n.with_locale(locale, &action)
   end
+
 end

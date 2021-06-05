@@ -1,0 +1,11 @@
+<div class="container">
+  <h4 class="<%= text_color %>"><%= I18n.t 'general.hello' %>, <%= current_user.name %></h4>
+  
+  <hr>
+
+  <%= render partial: 'home/profile_card' %>
+
+  <%= render partial: 'home/sign_in_card' %>
+
+  <%= render partial: 'home/configuration_card' %>
+</div>

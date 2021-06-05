@@ -1,0 +1,44 @@
+id:
+  general:
+    hello: Halo
+    profile: Profil
+    ago: lalu
+    update: Perbarui
+    warning: Peringatan
+  navbar:
+    profile: Profil
+    configure: Konfigurasi
+    edit_account: Ubah Data Akun
+    change_password: Ubah Kata Sandi
+    cancel_account: Hapus Akun
+    logout: Keluar
+  card:
+    profile:
+      summary: Ini adalah ringkasan akun anda
+      avatar: Avatar
+      name: Nama
+      phone: Telepon
+      email: Alamat Email
+      join_date: Tanggal Bergabung
+    sign_in:
+      title: Informasi Login
+      desc: Informasi terkait Login akun
+      count: Jumlah Sign-In
+      current_time: Waktu Login
+      current_ip: Alamat IP Login saat ini
+      last_time: Terakhir Login
+      last_ip: Alamat IP Login terakhir
+    configuration:
+      title: Konfigurasi
+      desc: Ringkasan konfigurasi akun
+      form_desc: Form untuk mengatur konfigurasi akun
+      theme: Tema
+      language: Bahasa
+      locale: Bahasa
+  datetime:
+    distance_in_words:
+      x_days:
+        one: "1 Hari"
+        other: "%{count} hari"
+  validation:
+    errors: "terdapat %{count} kesalahan pada saat menyimpan %{model}"

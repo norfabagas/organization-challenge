@@ -60,7 +60,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "organization_challenge_production"
+  # config.active_job.queue_name_prefix = "rails_dashboard_production"
 
   config.action_mailer.perform_caching = false
 
@@ -117,4 +117,16 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # Configure smtp mail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch("MAIL_ADDRESS"),
+    domain: ENV.fetch("MAIL_DOMAIN"),
+    port: ENV.fetch("MAIL_PORT"),
+    user_name: ENV.fetch("MAIL_USERNAME"),
+    password: ENV.fetch("MAIL_PASSWORD"),
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end

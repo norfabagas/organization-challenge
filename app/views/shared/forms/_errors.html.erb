@@ -1,0 +1,14 @@
+<% if model.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert <%= alert_color %>">
+      <strong><%= I18n.t 'general.warning' %>!</strong>
+      <%= I18n.t('validation.errors', count: model.errors.count, model: model.class.name) %>
+    </div>
+  </div>
+
+  <ul>
+    <% model.errors.full_messages.each do |message| %>
+      <li class="<%= text_color %>"><%= message %></li>
+    <% end %>
+    </ul>
+<% end %>

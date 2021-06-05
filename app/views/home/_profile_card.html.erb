@@ -1,0 +1,48 @@
+<div class="card <%= bg_color %>">
+  <div class="card-title">
+      <h5 class="ml-3 mt-3 <%= text_color %>">
+      <%= I18n.t 'general.profile' %>
+      <%= card_toggler 'profile-card-collapse' %>
+      </h5>
+  </div>
+
+  <div class="collapse show" id="profile-card-collapse">
+    
+    <div class="card-subtitle text-muted ml-3">
+      <span class="<%= text_color %>"><%= I18n.t 'card.profile.summary' %> |</span>
+      <a class="<%= btn_general %> btn-sm" href="<%= edit_user_registration_path %>">
+        <i class="fas fa-external-link-square-alt"></i> Edit Account
+      </a>
+    </div>
+
+    <div class="card-body">
+      <table class="<%= "#{table_class} #{text_color}" %>">
+        <tr>
+          <td><%= I18n.t 'card.profile.avatar' %></td>
+          <td>
+            <img class="img-thumbnail" src="<%= current_user&.avatar %>"/>
+          </td>
+        </tr>
+        <tr>
+          <td><%= I18n.t 'card.profile.name' %></td>
+          <td><%= current_user&.name %></td>
+        </tr>
+
+        <tr>
+          <td><%= I18n.t 'card.profile.phone' %></td>
+          <td><%= current_user&.phone %></td>
+        </tr>
+
+        <tr>
+          <td><%= I18n.t 'card.profile.email' %></td>
+          <td><%= current_user&.email %></td>
+        </tr>
+
+        <tr>
+          <td><%= I18n.t 'card.profile.join_date' %></td>
+          <td><%= get_informative_time(current_user.created_at) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

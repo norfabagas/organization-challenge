@@ -7,11 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create admin role
-User.create(
-  name: 'Admin',
+user = User.create(
+  name: 'Admin App',
   email: 'admin@mail.com',
   password: 'password',
   password_confirmation: 'password',
-  phone: '000',
+  phone: '081234567890',
   role: 'admin'
 )
+
+# Skip email confirmation
+user.skip_confirmation!
+user.save!

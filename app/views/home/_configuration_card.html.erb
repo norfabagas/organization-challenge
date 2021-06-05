@@ -1,0 +1,29 @@
+<div class="card <%= bg_color %>">
+  <div class="card-title">
+    <h5 class="ml-3 mt-3 <%= text_color %>"><%= I18n.t 'card.configuration.title' %>
+      <%= card_toggler 'configuration-card-collapse' %>
+    </h5>
+  </div>
+
+  <div class="collapse show" id="configuration-card-collapse">
+    <div class="card-subtitle text-muted ml-3">
+      <span class="<%= text_color %>"><%= I18n.t 'card.configuration.desc' %> |</span>
+      <a class="<%= btn_general %> btn-sm" href="<%= configure_path %>">
+        <i class="fas fa-external-link-square-alt"></i> <%= I18n.t 'card.configuration.title' %>
+      </a>
+    </div>
+
+    <div class="card-body">
+      <table class="<%= "#{table_class} #{text_color}" %>">
+        <tr>
+          <td><%= I18n.t 'card.configuration.theme' %></td>
+          <td><%= current_user.current_theme.capitalize %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t 'card.configuration.language' %></td>
+          <td><%= current_user.configuration.locale.upcase %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

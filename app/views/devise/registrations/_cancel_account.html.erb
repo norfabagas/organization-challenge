@@ -1,0 +1,22 @@
+<div class="card <%= bg_color %>">
+  <div class="card-title">
+    <h5 class="ml-3 mt-3 <%= text_color %>">
+      Form
+      <%= card_toggler 'cancel-account-collapse' %>
+    </h5>
+  </div>
+
+  <div class="collapse show" id="cancel-account-collapse">
+    <div class="card-subtitle text-muted ml-3">
+      <span class="<%= text_color %>">Unhappy with your account?</span>
+    </div>
+    <div class="card-body">
+      <%= button_to "Cancel my account", 
+                    registration_path(resource_name), 
+                    data: { confirm: "Are you sure? This action cannot be undone" }, 
+                    method: :delete,
+                    class: "form-control #{btn_danger}" %>
+        </p>
+    </div>
+  </div>
+</div>
