@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_organizations, only: [:new, :create, :edit, :update]
-  before_action :load_roles, only: [:new, :create, :edit, :update]
 
   def index
     if current_user.admin?
@@ -41,10 +40,12 @@ class UsersController < ApplicationController
 
   def edit
     @person = User.find(params[:id])
+    load_roles(@person.organization)
   end
 
   def update
     @person = User.find(params[:id])
+    load_roles(@person.organization)
     if @person.update(user_params)
       flash[:notice] = I18n.t('persons.updated')
       return redirect_to persons_path
@@ -69,9 +70,14 @@ class UsersController < ApplicationController
     @organizations.unshift(["Select Organization", nil])
   end
 
-  def load_roles
-    @roles = current_user.can_create_roles
-    @roles.unshift(["Select Role", nil])
+  def load_roles(organization)
+    if organization.users.where(role: 'account_manager').count < 1
+      @roles = current_user.can_create_roles
+      @roles.unshift(["Select Role", nil])
+    else
+      @roles = [User::ROLES[2]]
+      @roles.unshift(["Select Role", nil])
+    end
   end
 
   def user_params

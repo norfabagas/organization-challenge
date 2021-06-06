@@ -34,7 +34,7 @@ en:
     email: Email
     avatar: Avatar
     actions: Actions
-    form: Organization Form
+    form: Person Form
     created: Person created
     updated: Person updated
     deleted: Person deleted
