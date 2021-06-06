@@ -7,7 +7,13 @@ class OrganizationsController < ApplicationController
 
   def index
     if current_user.admin?
-      @organizations = Organization.all
+      if params[:q]
+        @organizations = Organization
+          .joins(:users)
+          .where("organizations.name ILIKE :search OR users.name ILIKE :search", search: "%#{params[:q]}%")
+      else
+        @organizations = Organization.all
+      end
     else
       @organizations = Organization.where(id: current_user.organization.id)
     end

@@ -10,9 +10,11 @@ class UsersController < ApplicationController
     if current_user.admin?
       @persons = User.where.not(role: 'admin').all
     elsif current_user.account_manager?
-      @persons = current_user.organization.users.all
+      ids = current_user.organization.users.all.pluck(:id)
+      ids.delete(current_user.id)
+      @persons = User.where(id: ids)
     else
-      @persons = user.where(id: current_user.id)
+      @persons = User.where(id: current_user.id)
     end
   end
 
@@ -39,6 +41,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if (current_user.id == params[:id])
+      flash[:alert] = "You cannot edit your own role"
+      return redirect_to root_path
+    end
     @person = User.find(params[:id])
     load_roles(@person.organization)
   end
