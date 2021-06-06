@@ -8,10 +8,24 @@ class UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @persons = User.where.not(role: 'admin').all
+      if params[:q]
+        @persons = User
+          .where.not(role: 'admin')
+          .where("users.name ILIKE :search", search: "%#{params[:q]}%")
+      else
+        @persons = User.where.not(role: 'admin').all
+      end
     elsif current_user.account_manager?
-      ids = current_user.organization.users.all.pluck(:id)
-      ids.delete(current_user.id)
+      if params[:q]
+        ids = current_user
+          .organization
+          .users
+          .where("users.name ILIKE :search", search: "%#{params[:q]}%")
+          .pluck(:id)
+      else
+        ids = current_user.organization.users.all.pluck(:id)
+        ids.delete(current_user.id)
+      end
       @persons = User.where(id: ids)
     else
       @persons = User.where(id: current_user.id)
