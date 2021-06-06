@@ -5,6 +5,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable,
     :trackable, :confirmable
 
+  belongs_to :organization
+
   mount_uploader :avatar, AvatarUploader
 
   after_find :get_configuration

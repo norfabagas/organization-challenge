@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_195018) do
+ActiveRecord::Schema.define(version: 2021_06_06_033739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2021_06_05_195018) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_configurations_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", default: ""
+    t.string "phone", default: ""
+    t.string "email", default: ""
+    t.string "website", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "logo"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,7 +55,9 @@ ActiveRecord::Schema.define(version: 2021_06_05_195018) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "avatar"
+    t.bigint "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

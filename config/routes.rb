@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'home#profile', as: 'profile'
   match 'configure', to: 'home#configure', via: [:get, :post], as: 'configure'
+
+  resources :organizations
 end

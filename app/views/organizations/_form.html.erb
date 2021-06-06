@@ -1,0 +1,64 @@
+<div class="card <%= bg_color %>">
+  <div class="card-title">
+    <h5 class="ml-3 mt-3 <%= text_color %>">
+      Form
+      <%= card_toggler 'new-organizations-collapse' %>
+    </h5>
+  </div>
+
+  <div class="collapse show" id="new-organizations-collapse">
+    <div class="card-subtitle text-muted ml-3">
+      <span class="<%= text_color %>"><%= I18n.t('organizations.form') %></span>
+    </div>
+
+    <div class="card-body">
+      <%= form_with model: @organization do |f| %>
+
+          <%= render "devise/shared/error_messages", resource: @organization %>
+
+          <div class="form-group">
+            <%= f.text_field :name, 
+                              autofocus: true, 
+                              autocomplete: "name",
+                              class: "form-control",
+                              placeholder: "name" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.email_field :email, 
+                              autofocus: true, 
+                              autocomplete: "email",
+                              class: "form-control",
+                              placeholder: "email" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :phone, 
+                              autofocus: true, 
+                              autocomplete: "phone",
+                              class: "form-control",
+                              placeholder: "phone" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.file_field :logo,  
+                              autocomplete: "logo",
+                              class: "form-control",
+                              placeholder: "logo" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :website,  
+                              autocomplete: "website",
+                              class: "form-control",
+                              placeholder: "website" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit',
+                          class: "form-control #{btn_form}" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ en:
     ago: ago
     update: Update
     warning: Warning
+    new: New
+    edit: Edit
   navbar:
     profile: Profile
     configure: Configure
@@ -12,6 +14,18 @@ en:
     change_password: Change Password
     cancel_account: Cancel Account
     logout: Logout
+  organizations:
+    index: Organizations
+    name: Name
+    phone: Phone
+    email: Email
+    website: Website
+    actions: Actions
+    form: Organization Form
+    logo: Logo
+    created: Organization created
+    updated: Organization updated
+    deleted: Organization deleted
   card:
     profile:
       summary: Here are summaries of your account
