@@ -1,9 +1,16 @@
 class OrganizationsController < ApplicationController
-  
+ 
+  check_authorization
+  load_and_authorize_resource
+
   before_action :authenticate_user!
 
   def index
-    @organizations = Organization.all
+    if current_user.admin?
+      @organizations = Organization.all
+    else
+      @organizations = Organization.where(id: current_user.organization.id)
+    end
   end
 
   def new

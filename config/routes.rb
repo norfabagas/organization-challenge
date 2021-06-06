@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :organizations
   
-  resources :persons
+  resources :persons, controller: 'users'
 end

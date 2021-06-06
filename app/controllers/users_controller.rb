@@ -1,11 +1,19 @@
-class PersonsController < ApplicationController
+class UsersController < ApplicationController
+
+  check_authorization
+  load_and_authorize_resource
 
   before_action :authenticate_user!
   before_action :load_organizations, only: [:new, :create, :edit, :update]
   before_action :load_roles, only: [:new, :create, :edit, :update]
 
   def index
-    @persons = User.where.not(role: 'admin').all
+    if current_user.admin?
+      @persons = User.where.not(role: 'admin').all
+    elsif current_user.account_manager?
+      @persons = current_user.organization.users.all
+    else
+      @persons = user.where(id: current_user.id)
   end
 
   def new
