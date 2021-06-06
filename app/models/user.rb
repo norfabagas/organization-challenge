@@ -5,6 +5,12 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable,
     :trackable, :confirmable
 
+  ROLES = [
+    ['Admin', 'admin'],
+    ['Account Manager', 'account_manager'],
+    ['Member', 'member']
+  ]
+
   belongs_to :organization
 
   mount_uploader :avatar, AvatarUploader
@@ -37,7 +43,19 @@ class User < ApplicationRecord
   end
 
   def member?
-    self.role != "admin"
+    self.role == "member"
+  end
+
+  def account_manager?
+    self.role == "account_manager"
+  end
+
+  def can_create_roles
+    if self.admin?
+      [ROLES[1], ROLES[2]]
+    else
+      [ROLES[2]]
+    end
   end
 
   def current_theme

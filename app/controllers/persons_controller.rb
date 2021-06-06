@@ -2,6 +2,7 @@ class PersonsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_organizations, only: [:new, :create, :edit, :update]
+  before_action :load_roles, only: [:new, :create, :edit, :update]
 
   def index
     @persons = User.where.not(role: 'admin').all
@@ -59,12 +60,18 @@ class PersonsController < ApplicationController
     @organizations.unshift(["Select Organization", nil])
   end
 
+  def load_roles
+    @roles = current_user.can_create_roles
+    @roles.unshift(["Select Role", nil])
+  end
+
   def user_params
     params.require( :user)
           .permit(  :name,
                     :email,
                     :phone,
                     :avatar,
+                    :role,
                     :organization_id,
                     :password,
                     :password_confirmation)

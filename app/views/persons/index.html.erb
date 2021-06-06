@@ -15,6 +15,7 @@
         <td><%= I18n.t('persons.email') %></td>
         <td><%= I18n.t('persons.avatar') %></td>
         <td><%= I18n.t('persons.organization') %></td>
+        <td><%= I18n.t('persons.role') %></td>
         <td><%= I18n.t('persons.actions') %></td>
       </tr>
     </thead>
@@ -30,6 +31,7 @@
             
           </td>
           <td><%= person.organization.name %></td>
+          <td><%= person.role %></td>
           <td>
             <a class="<%= btn_general %> btn-sm" href="<%= edit_person_path(person.id) %>">
               <i class="fas fa-eye"></i>
