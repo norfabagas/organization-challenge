@@ -13,7 +13,7 @@ class Ability
         can [:index, :show, :edit], [Organization]
         can :manage, User
       else
-        can [:index], [Organization]
+        can [:index, :show], [Organization]
       end
     #
     # The first argument to `can` is the action you are giving the user

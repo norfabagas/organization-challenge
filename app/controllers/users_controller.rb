@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       @persons = current_user.organization.users.all
     else
       @persons = user.where(id: current_user.id)
+    end
   end
 
   def new

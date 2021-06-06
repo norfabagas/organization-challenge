@@ -29,15 +29,28 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params[:id])
+    if current_user.admin?
+      @organization = Organization.find(params[:id])
+    else
+      @organization = current_user.organization
+    end
   end
 
   def edit
-    @organization = Organization.find(params[:id])
+    if current_user.admin?
+      @organization = Organization.find(params[:id])
+    else
+      @organization = current_user.organization
+    end
   end
 
   def update
-    @organization = Organization.find(params[:id])
+    if current_user.admin?
+      @organization = Organization.find(params[:id])
+    else
+      @organization = current_user.organization
+    end
+
     if @organization.update(organization_params)
       flash[:notice] = I18n.t('organizations.updated')
       return redirect_to organizations_path
