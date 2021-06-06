@@ -26,6 +26,20 @@ id:
     created: Organisasi ditambahkan
     updated: Organisasi diperbarui
     deleted: Organisasi dihapus
+    role: Peran
+  persons:
+    index: Orang
+    name: Nama
+    phone: Telepon
+    email: Email
+    avatar: Avatar
+    actions: Aksi
+    form: Form Orang
+    created: Orang ditambahkan
+    updated: Orang diperbarui
+    deleted: Orang dihapus
+    organization: Organisasi
+    role: Peran
   card:
     profile:
       summary: Ini adalah ringkasan akun anda

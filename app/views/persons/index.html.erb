@@ -1,0 +1,50 @@
+<div class="container">
+  <h4 class="<%= text_color %>">
+    <%= I18n.t('persons.index') %>
+    <a class="<%= btn_general %> btn-sm" href="<%= new_person_path %>">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h4>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td><%= I18n.t('persons.name') %></td>
+        <td><%= I18n.t('persons.phone') %></td>
+        <td><%= I18n.t('persons.email') %></td>
+        <td><%= I18n.t('persons.avatar') %></td>
+        <td><%= I18n.t('persons.organization') %></td>
+        <td><%= I18n.t('persons.actions') %></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @persons.each do |person| %>
+        <tr>
+          <td><%= person.id %></td>
+          <td><%= person.name %></td>
+          <td><%= person.phone %></td>
+          <td><%= person.email %></td>
+          <td>
+            <img src="<%= person.avatar %>" class="img-thumbnail img-fluid" />
+            
+          </td>
+          <td><%= person.organization.name %></td>
+          <td>
+            <a class="<%= btn_general %> btn-sm" href="<%= edit_person_path(person.id) %>">
+              <i class="fas fa-eye"></i>
+            </a>
+            <a class="<%= btn_form %> btn-sm" href="<%= edit_person_path(person.id) %>">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+            <%= button_to 'delete', 
+                person_path(person.id), 
+                method: :delete, 
+                data: { confirm: "Are you sure? This action cannot be undone" }, 
+                class: "form-control #{btn_danger}" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -26,6 +26,20 @@ en:
     created: Organization created
     updated: Organization updated
     deleted: Organization deleted
+    role: Role
+  persons:
+    index: Persons
+    name: Name
+    phone: Phone
+    email: Email
+    avatar: Avatar
+    actions: Actions
+    form: Organization Form
+    created: Person created
+    updated: Person updated
+    deleted: Person deleted
+    organization: Organization
+    role: Role
   card:
     profile:
       summary: Here are summaries of your account

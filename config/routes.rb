@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   match 'configure', to: 'home#configure', via: [:get, :post], as: 'configure'
 
   resources :organizations
+  
+  resources :persons
 end

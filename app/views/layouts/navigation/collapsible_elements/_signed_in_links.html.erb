@@ -2,6 +2,10 @@
   <%= link_to "Organizations", organizations_path, class: 'nav-link' %>
 </li>
 
+<li class="nav-item">
+  <%= link_to "Persons", persons_path, class: 'nav-link' %>
+</li>
+
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown userSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= current_user.name %>
